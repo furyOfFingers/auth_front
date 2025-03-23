@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 
-import Email from "../Email/Email";
+import { SignIn } from "../SignIn";
+import { SignUp } from "../SignUp";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -40,30 +41,25 @@ export const Main = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Sign In" {...a11yProps(0)} />
+          <Tab label="Sign Up" {...a11yProps(1)} />
         </Tabs>
       </Box>
 
       <CustomTabPanel value={value} index={0}>
-        <Email />
+        <SignIn />
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <SignUp />
       </CustomTabPanel>
-
-      <CustomTabPanel value={value} index={2}>
-        Item Three
-      </CustomTabPanel>
-    </div>
+    </>
   );
 };
