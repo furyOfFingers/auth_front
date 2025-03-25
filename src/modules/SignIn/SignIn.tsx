@@ -2,6 +2,8 @@ import { TextField, Button, Typography, Container } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { useAuthStore } from "../../store/auth";
+
 const validationSchema = yup.object({
   email: yup
     .string()
@@ -14,14 +16,15 @@ const validationSchema = yup.object({
 });
 
 export const SignIn = (): JSX.Element => {
+  const { getAuthLoading, signIn } = useAuthStore();
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "dfg@f.rg",
+      password: "sfddfgdfg",
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("Отправленные данные:", values);
+      signIn(values);
     },
   });
 
@@ -57,6 +60,7 @@ export const SignIn = (): JSX.Element => {
         </Typography>
 
         <Button
+          disabled={getAuthLoading()}
           fullWidth
           type="submit"
           variant="contained"
