@@ -1,6 +1,7 @@
 import { TextField, Button, Typography, Container } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import { useAuthStore } from "../../store/auth";
 
@@ -16,6 +17,7 @@ const validationSchema = yup.object({
 });
 
 export const SignUp = (): JSX.Element => {
+  const { t } = useTranslation();
   const { getAuthLoading, signIn } = useAuthStore();
 
   const formik = useFormik({
@@ -35,7 +37,7 @@ export const SignUp = (): JSX.Element => {
       <form onSubmit={formik.handleSubmit}>
         <TextField
           name="email"
-          label="email"
+          label={t("label.email")}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -46,7 +48,7 @@ export const SignUp = (): JSX.Element => {
 
         <TextField
           name="password"
-          label="password"
+          label={t("label.password")}
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -58,7 +60,7 @@ export const SignUp = (): JSX.Element => {
         />
 
         <Typography sx={{ mt: 2 }} variant="subtitle2" gutterBottom>
-          Create new account
+          {t("description.signUp")}
         </Typography>
 
         <Button
@@ -69,7 +71,7 @@ export const SignUp = (): JSX.Element => {
           color="primary"
           sx={{ mt: 3, width: 100 }}
         >
-          Sign Up
+          {t("btnText.signIn")}
         </Button>
       </form>
     </Container>

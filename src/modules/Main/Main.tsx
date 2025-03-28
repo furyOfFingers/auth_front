@@ -3,6 +3,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 
 import { SignIn } from "../SignIn";
 import { SignUp } from "../SignUp";
+import { Header } from "../Header";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -18,7 +19,6 @@ function CustomTabPanel(props: TabPanelProps) {
       role="tabpanel"
       hidden={value !== index}
       id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -43,15 +43,13 @@ export const Main = (): JSX.Element => {
   return (
     <>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Sign In" {...a11yProps(0)} />
-          <Tab label="Sign Up" {...a11yProps(1)} />
-        </Tabs>
+        <Header />
       </Box>
+
+      <Tabs value={value} onChange={handleChange}>
+        <Tab label="Sign In" {...a11yProps(0)} />
+        <Tab label="Sign Up" {...a11yProps(1)} />
+      </Tabs>
 
       <CustomTabPanel value={value} index={0}>
         <SignIn />
